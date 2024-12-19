@@ -108,6 +108,8 @@ Follow these steps to install the SiLK Suite:
    rwfilter --type=all --proto=6 \
     --start-date=2015/06/02T13 --end-date=2015/06/18T18 \
     --pass=tcp_traffic.rwf
+   rwfilter --type=all --proto=6 --start-date=2015/06/02T13 --end-date=2015/06/18T18 --pass=tcp_traffic.rwf
+   rwcut tcp_traffic.rwf --fields=sip,dip,packets,bytes,sTime,eTime > outputfile.txt
 
    ```
    - `--proto=6`: Filters TCP traffic.
