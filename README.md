@@ -37,6 +37,7 @@ The goal of this assignment is to analyze and classify TCP traffic data using th
 ![10](assets/images/9.JPG)
 ![10](assets/images/10.JPG)
 ![10](assets/images/11.JPG)
+![10](assets/images/file.JPG)
 
 ### Output
 ![10](assets/images/tcp_analytics_graphs.png)
@@ -104,30 +105,14 @@ Follow these steps to install the SiLK Suite:
 1. **Retrieve TCP Traffic:**
    Use the following command to filter TCP traffic and save it to a file:
    ```bash
-   rwfilter --proto=6 --type=all --pass=stdout > tcp_traffic.txt
+   rwfilter --type=all --proto=6 \
+    --start-date=2015/06/02T13 --end-date=2015/06/18T18 \
+    --pass=tcp_traffic.rwf
+
    ```
    - `--proto=6`: Filters TCP traffic.
    - `--type=all`: Fetches all records.
    - `--pass=stdout`: Outputs the results to the standard output.
-
-2. **Summarize Traffic:**
-   Get a summary of TCP traffic:
-   ```bash
-   rwcount --proto=6 --bin-size=3600 tcp_traffic.txt
-   ```
-
-3. **Classify Traffic by Nodes:**
-   Use `rwuniq` to group traffic by source or destination:
-   ```bash
-   rwuniq --fields=sip,dip --values=packets,bytes tcp_traffic.txt
-   ```
-
-4. **Detect Anomalies:**
-   Identify nodes with high traffic using thresholds:
-   ```bash
-   rwfilter --proto=6 --type=all --packets=1000- --pass=stdout > anomalies.txt
-   ```
-   - `--packets=1000-`: Filters nodes with 1000+ packets.
 
 ---
 
